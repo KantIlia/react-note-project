@@ -1,10 +1,10 @@
 import './SaveButton.css'
 import React from 'react'
 
-function SaveButton() {
+function SaveButton({ onSave }) {
     return (
         <div className='SaveButton.css'>
-            <button className='SaveButton'>Save note</button>
+            <button className='SaveButton' onClick={onSave}>Save note</button>
         </div>
     )
 }

@@ -4,7 +4,7 @@ import React from 'react'
 function TextInput() {
     return (
         <div className='divTekstInput'>
-            <input className='TekstInput' type="text" placeholder='enter text' />
+            <input id='TekstInput' className='TekstInput' type="text" placeholder='enter text' />
         </div>
     )
 }
