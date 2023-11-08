@@ -6,28 +6,33 @@ import CleanButton from '../CleanButton/CleanButton.jsx'
 import React, {useState} from 'react'
 
 
-function InputBox() {
-
-     const saveNote = () => {
-        console.log(document.getElementById('headerInput').value + ' - Header');
-        console.log(document.getElementById('TekstInput').value + ' - text');
-
-     }
-
-     const cleanNote = () => {
-       document.getElementById('headerInput').value = '';
-       document.getElementById('TekstInput').value = '';
+function InputBox({ onSave }) {
+    const [noteArray, setNoteArray] = useState([]);
+  
+    const saveNote = () => {
+        const header = document.getElementById('headerInput').value;
+        const text = document.getElementById('textInput').value;
+        const newNote = { header, text };
+  
+        setNoteArray([...noteArray, newNote]);
+        onSave([...noteArray, newNote]);
+        console.log(noteArray, ' - check input array');
     }
-
+  
+    const cleanNote = () => {
+      document.getElementById('headerInput').value = '';
+      document.getElementById('textInput').value = '';
+    }
+  
     return (
-    <>
+      <>
         <HeaderInput />
         <TextInput />
-        <SaveButton onSave={saveNote}/>
+        <SaveButton onSave={saveNote} />
         <CleanButton onClean={cleanNote} />
-    </>
+      </>
     )
-}
-
-
-export default InputBox;
+  }
+  
+  export default InputBox;
+  

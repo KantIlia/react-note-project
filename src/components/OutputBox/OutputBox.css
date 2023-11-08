@@ -1,0 +1,19 @@
+.OutputDiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.outputArray-div {
+    width: 200px;
+    border: 1px solid #000;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+  
+  .outputArray-box-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
