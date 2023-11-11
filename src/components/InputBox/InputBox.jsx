@@ -1,20 +1,26 @@
-import './InputBox.css'
-import React, { useState } from 'react'
+import './InputBox.css';
+import React, { useState } from 'react';
+import OutputNotes from '../OutputNotes/OutputNotes';
+import TextareaAutosize from 'react-textarea-autosize';
 
 
 export default function InputBox() {
 
   const[text, setText] = useState('');
   const[header, setHeader] = useState('');
-  const[noteArray, setNoteArray] = useState('');
+  const[noteArray, setNoteArray] = useState([]);
 
   const saveButton = () => {
-    const newItem = { header, text, dateTime: new Date().toLocaleString() };
-    setNoteArray((prevNoteArray) => {
-      const updatedArray = [...prevNoteArray, newItem];
-      console.log('array:', updatedArray);
-      return updatedArray;
-    });
+    if(text === '')
+      alert('Pleaze enter text of noat');
+    else  {
+      const newItem = { header, text, dateTime: new Date().toLocaleString() };
+      setNoteArray((prevNoteArray) => {
+        const updatedArray = [...prevNoteArray, newItem];
+        console.log('array:', updatedArray);
+        return updatedArray;
+      });
+    }
   
   setText('');
   setHeader('');
@@ -25,74 +31,47 @@ export default function InputBox() {
     setHeader('');
   }
 
+  const deleteNote = (index) => {
+    if (window.confirm("Do you really want to delete this note?")) {
+      setNoteArray((prevNoteArray) => {
+        const updatedArray = [...prevNoteArray];
+        updatedArray.splice(index, 1);
+        console.log('array after delete:', updatedArray);
+        return updatedArray;
+      });
+    }
+  };
 
   return(
     <div className='mainDiv'>
+
       <div className='inputBox'> 
+        <h1>Note aplicathion</h1>
+        <input 
+          className='inputHeader' 
+          name="myInputHeader" 
+          type='text' value={ header } 
+          maxLength={25} 
+          placeholder='Tittle' 
+          onChange={(e) => setHeader(e.target.value)}/>
 
-        <label className='inputHeader'>
-          Header: <input name="myInputHeader" type='text' value={ header } placeholder='note header' onChange={(e) => setHeader(e.target.value)} />
-        </label>
-        <hr />
-
-        <label className='inputText'>
-          Text: <input name="myInputText" type='text' value={ text } placeholder='note header' onChange={(e) => setText(e.target.value)} />
-        </label>
-        <hr />
-
-        <button onClick={ saveButton } >Save</button>
-        <button onClick={ deleteButton }>Clean</button>
+        <TextareaAutosize  
+          className='inputText' 
+          name="myInputText" type='text' 
+          value={ text } 
+          placeholder='text of noat' 
+          onChange={(e) => setText(e.target.value)} 
+          minRows={3}
+          maxRows={20}/>
+          
+        <button onClick={ saveButton } >Save note</button>
+        <button onClick={ deleteButton }>Clean note</button>
       </div>
 
-      <div className='outpuxBox'>
-        {noteArray.map((item, index) => (
-          <div key={index}>
-            <p>Header: {item.header}</p>
-            <p>Text: {item.text}</p>
-            <p>Date and Time: {item.dateTime}</p>
-            <hr />
-          </div>
-        ))}
-      </div>
+     <>
+     <OutputNotes noteArray={noteArray} deleteNote={deleteNote} />
+     </>
 
     </div>
   )
 }
-
-
-
-
-
-// function InputBox({ onSave }) {
-//   const [noteArray, setNoteArray] = useState([]);
-
-//   const saveNote = () => {
-//       const header = document.getElementById('headerInput').value;
-//       const text = document.getElementById('textInput').value;
-//       const newNote = { header, text };
-
-//       setNoteArray((prevNoteArray) => [...prevNoteArray, newNote]);
-//       onSave(noteArray);
-//   }
-
-//   useEffect(() => {
-//     console.log(noteArray, ' - check input array');
-//   }, [noteArray]);
-
-//   const cleanNote = () => {
-//     document.getElementById('headerInput').value = '';
-//     document.getElementById('textInput').value = '';
-//   }
-
-//   return (
-//     <>
-//       <HeaderInput />
-//       <TextInput />
-//       <SaveButton onSave={saveNote} />
-//       <CleanButton onClean={cleanNote} />
-//     </>
-//   )
-// }
-
-//   export default InputBox;
-  

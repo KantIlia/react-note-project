@@ -8,19 +8,11 @@
 
  ## inputBox
  in input block mix everething and create array of Notes
- create parametrs:
- - header input
- - text input
- - button save
- - button clean
- - div with date
 
  take data from input send in App then send in OutputBox
 
  ## OutputBox
 
-- make restr of array and output
-- add componet deleteNote
 broke somthing, cant find try somenew metods rewrite 5-6 times everithing now there is big balagan, show only 1st note
 
 
@@ -29,4 +21,25 @@ broke somthing, cant find try somenew metods rewrite 5-6 times everithing now th
  Remake all, have problem with logic start work like it js project but there is react/
 
  just start to remake, make 1 mil wuth some elements of 2 and 3
+
+ ## mil1
+
+1. Create component - InputBox
+add text area and save booton, after save save all in array noteArray
+make output to list for notes
+
+## mil2 
+1. Create date saving in array when click on SaveButton
+2. make date undestedouble
+3. add delete button and deleteNote functhion 
+
+## mil3 
+1. create input for header and incluse it in saving
+2. make delete button
+3. make functhion that make allert if text area is empty
+
+## mil 3.1
+1. add autosize with using library
+
+
  
