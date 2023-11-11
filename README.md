@@ -1,4 +1,4 @@
-OOO we start.....make git and everething is working, i think that i will die from old before its start working.
+<!-- OOO we start.....make git and everething is working, i think that i will die from old before its start working.
 
 ## mil1-3
 
@@ -24,4 +24,9 @@ OOO we start.....make git and everething is working, i think that i will die fro
 broke somthing, cant find try somenew metods rewrite 5-6 times everithing now there is big balagan, show only 1st note
 
 
- !!!! note make array in aray when update, check with shay, u have no ideas use Array.isArray to open my array in one level- bad design
+ !!!! note make array in aray when update, check with shay, u have no ideas use Array.isArray to open my array in one level- bad design -->
+
+ Remake all, have problem with logic start work like it js project but there is react/
+
+ just start to remake, make 1 mil wuth some elements of 2 and 3
+ 
