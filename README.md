@@ -41,5 +41,11 @@ make output to list for notes
 ## mil 3.1
 1. add autosize with using library
 
+## mil 4
+1. add component Mudul
+2. using modul library makeModule
+3. make choosing note what you cklick to another const and transmit to modal
+4. with css make module in front of everething
+
 
  

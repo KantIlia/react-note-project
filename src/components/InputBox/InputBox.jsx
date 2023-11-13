@@ -43,14 +43,17 @@ export default function InputBox() {
   };
 
   return(
+   
+
     <div className='mainDiv'>
 
       <div className='inputBox'> 
-        <h1>Note aplicathion</h1>
+        
         <input 
           className='inputHeader' 
           name="myInputHeader" 
-          type='text' value={ header } 
+          type='text' 
+          value={ header } 
           maxLength={25} 
           placeholder='Tittle' 
           onChange={(e) => setHeader(e.target.value)}/>
@@ -62,7 +65,8 @@ export default function InputBox() {
           placeholder='text of noat' 
           onChange={(e) => setText(e.target.value)} 
           minRows={3}
-          maxRows={20}/>
+          maxRows={20}
+          style={{ whiteSpace: 'pre-line' }} />
           
         <button onClick={ saveButton } >Save note</button>
         <button onClick={ deleteButton }>Clean note</button>
