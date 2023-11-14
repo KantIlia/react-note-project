@@ -1,8 +1,8 @@
 import React from 'react';
 
-function DeleteNote({ onDelete, index }) {
+export default function DeleteNote({ onDelete, id }) {
   const handleClick = () => {
-    onDelete(index);
+    onDelete(id);
   }
 
   return (
@@ -10,4 +10,3 @@ function DeleteNote({ onDelete, index }) {
   );
 }
 
-export default DeleteNote;

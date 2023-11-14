@@ -1,81 +1,48 @@
 import './InputBox.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import OutputNotes from '../OutputNotes/OutputNotes';
-import TextareaAutosize from 'react-textarea-autosize';
-
+import NoteForm from '../NoteForm/NoteForm';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function InputBox() {
+  const [noteArray, setNoteArray] = useState([]);
 
-  const[text, setText] = useState('');
-  const[header, setHeader] = useState('');
-  const[noteArray, setNoteArray] = useState([]);
+  useEffect(() => {
+    console.log(noteArray); 
+  }, [noteArray]);
 
-  const saveButton = () => {
-    if(text === '')
-      alert('Pleaze enter text of noat');
-    else  {
-      const newItem = { header, text, dateTime: new Date().toLocaleString() };
-      setNoteArray((prevNoteArray) => {
-        const updatedArray = [...prevNoteArray, newItem];
-        console.log('array:', updatedArray);
-        return updatedArray;
-      });
-    }
-  
-  setText('');
-  setHeader('');
-  }
+  const saveButton = ( header, text) => {
+      const newItem = { id: uuidv4(), header, text, dateTime: new Date().toLocaleString(), changingDate: '' };
+      setNoteArray((prevNoteArray) => [...prevNoteArray, newItem]); 
+  };
 
-  const deleteButton = () => {
-    setText('');
-    setHeader('');
-  }
-
-  const deleteNote = (index) => {
-    if (window.confirm("Do you really want to delete this note?")) {
+  const deleteNote = (id) => {
+    if (window.confirm('Do you really want to delete this note?')) {
       setNoteArray((prevNoteArray) => {
         const updatedArray = [...prevNoteArray];
-        updatedArray.splice(index, 1);
-        console.log('array after delete:', updatedArray);
+        updatedArray.splice(id, 1);
+
         return updatedArray;
       });
     }
   };
 
-  return(
-   
+  const updateNote = (id, header, text) => {
+    const updatedArray = [...noteArray];
+    const index = updatedArray.findIndex((note) => note.id === id);
+    updatedArray[index] = {
+      id,
+      header,
+      text,
+      dateChangeTime: new Date().toLocaleString(),
+    };
+    setNoteArray(updatedArray);
+  };
 
+  return (
     <div className='mainDiv'>
-
-      <div className='inputBox'> 
-        
-        <input 
-          className='inputHeader' 
-          name="myInputHeader" 
-          type='text' 
-          value={ header } 
-          maxLength={25} 
-          placeholder='Tittle' 
-          onChange={(e) => setHeader(e.target.value)}/>
-
-        <TextareaAutosize  
-          className='inputText' 
-          name="myInputText" type='text' 
-          value={ text } 
-          placeholder='text of noat' 
-          onChange={(e) => setText(e.target.value)} 
-          minRows={3}
-          maxRows={20}
-          style={{ whiteSpace: 'pre-line' }} />
-          
-        <button onClick={ saveButton } >Save note</button>
-        <button onClick={ deleteButton }>Clean note</button>
-      </div>
-
-     <>
-     <OutputNotes noteArray={noteArray} deleteNote={deleteNote} />
-     </>
-
+      <NoteForm saveButton={saveButton} updateNote={updateNote} />
+      <OutputNotes noteArray={noteArray} deleteNote={deleteNote}  />
     </div>
-  )
+  );
 }

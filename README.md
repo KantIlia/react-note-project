@@ -20,7 +20,7 @@ broke somthing, cant find try somenew metods rewrite 5-6 times everithing now th
 
  Remake all, have problem with logic start work like it js project but there is react/
 
- just start to remake, make 1 mil wuth some elements of 2 and 3
+ just start to remake, make 1 mil wuth some elements of 2 and 3 mil
 
  ## mil1
 
@@ -47,5 +47,20 @@ make output to list for notes
 3. make choosing note what you cklick to another const and transmit to modal
 4. with css make module in front of everething
 
-
+# mil 5
+1. remake input as a component
+2. put new component in module
+3. put proms in to show text when call module
+4. // rework save button to save changes
+5. add new date in array when create object
+6. // show date of change in array note
+7. //when cklick delete button open modal window debug this
+8. dont give user ability to chang textarea
+9. //check const deleteNote(maybe should use metod filter)
  
+
+
+ ## to do list
+ to do list is list of functhions and methods that i use but hfve no clear understanding
+ - !text.trim()
+ - useReducer dont understand this i think this metod will help me...
