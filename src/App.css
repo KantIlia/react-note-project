@@ -1,8 +1,0 @@
-.DivInputNote {
-  width: 100%;
-  border-bottom: solid 4px black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}

@@ -7,13 +7,11 @@ export default function NoteForm({ initialValues, saveButton, updateNote }) {
   const [text, setText] = useState(initialValues ? initialValues.text : '');
   const [header, setHeader] = useState(initialValues ? initialValues.header : '');
 
-  console.log(typeof updateNote);
-
   const handleSaveButton = () => {
     if (initialValues) {
-      updateNote(initialValues.id, header, text);
+      updateNote(initialValues.id, header, text, initialValues.dateTime);
     } else {
-      saveButton( header, text );
+      saveButton(header, text);
       setText('');
       setHeader('');
     }
