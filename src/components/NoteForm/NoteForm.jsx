@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
-import './NoteForm.css'
+import './NoteForm.css';
 
 
 export default function NoteForm({ initialValues, saveButton, updateNote }) {
   const [text, setText] = useState(initialValues ? initialValues.text : '');
   const [header, setHeader] = useState(initialValues ? initialValues.header : '');
+
 
   const handleSaveButton = () => {
     if (initialValues) {
@@ -23,6 +24,7 @@ export default function NoteForm({ initialValues, saveButton, updateNote }) {
     setHeader('');
   };
 
+  
   return (
     <div className='inputBox'>
       <input

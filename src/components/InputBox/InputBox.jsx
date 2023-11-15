@@ -5,9 +5,7 @@ import CustomModule from '../Module/Module';
 import { v4 as uuidv4 } from 'uuid';
 
 
-
 export default function InputBox() {
-
   const [noteArray, setNoteArray] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedNote, setSelectedNote] = useState();
@@ -17,6 +15,7 @@ export default function InputBox() {
   useEffect(() => {
     console.log('all array', noteArray);
   }, [noteArray]);
+
 
   useEffect(() => {
     console.log('modal note', selectedNote);
@@ -29,6 +28,7 @@ export default function InputBox() {
     setNoteArray((prevNoteArray) => [...prevNoteArray, newItem]);
   };
 
+
   const updateNote = (id, header, text, dateTime) => {
     const updatedArray = [...noteArray];
     const index = updatedArray.findIndex((note) => note.id === id);
@@ -38,16 +38,22 @@ export default function InputBox() {
       text,
       dateTime,
       changingDate: new Date().toLocaleString(),
-    };
+    };  
     setNoteArray(updatedArray);
     toggleShowModal()
   };
+
 
   const deleteNote = (id) => {
     if (window.confirm('Do you really want to delete this note?')) {
       setNoteArray((prevNoteArray) => {
         const updatedArray = [...prevNoteArray];
         updatedArray.splice(id, 1);
+
+        if (updatedArray.length === 0) {
+          localStorage.removeItem('noteArray');
+        }
+
         return updatedArray;
       });
     }
@@ -59,6 +65,7 @@ export default function InputBox() {
     setShowModal(!showModal);
   };
 
+
   const handleNoteClick = (note) => {
     setSelectedNote(note);
     toggleShowModal();
@@ -66,12 +73,11 @@ export default function InputBox() {
 
 
   // localserver working
-  
   useEffect(() => {
-    if(noteArray.length > 0) {
-    localStorage.setItem('noteArray', JSON.stringify(noteArray));
+    if (noteArray.length > 0) {
+      localStorage.setItem('noteArray', JSON.stringify(noteArray));
     }
-  },[noteArray]);
+  }, [noteArray]);
 
 
   useEffect(() => {
@@ -82,14 +88,13 @@ export default function InputBox() {
   }, []);
 
 
-
   return (
     <div className='mainDiv'>
       <NoteForm saveButton={saveButton} updateNote={updateNote} />
       <OutputNotes noteArray={noteArray} deleteNote={deleteNote} handleNoteClick={handleNoteClick} showModal={showModal} toggleShowModal={toggleShowModal} />
       {showModal && (
         <CustomModule note={selectedNote} showModal={showModal} toggleShowModal={toggleShowModal} saveButton={saveButton} updateNote={updateNote} />
-        )}
+      )}
     </div>
   );
 }

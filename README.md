@@ -57,7 +57,9 @@ make output to list for notes
 
 
 ## mil 8 
-1. 
+1. find bug with local storage, when it 1 note we delete it storage dont change add clean storage if length 0 to delte button - deleteNote 
+2. clean code delete free space check doublening and not using functhions and const 
+
 
 
 
@@ -67,3 +69,4 @@ make output to list for notes
  - useReducer dont understand synaksis of this but i think this metod will help me... => its state manager but in thus pj i shoose gorizontal structure
  - make 8 - archiv - button to put in array archuv - think about router
  - mil 7   i dont now why but output work withiout any changes(my output take new item each time when save buuton works but we download array from local storeg and its dispayd without any specific functhions - okey i will check how its work) 
+ - rework design maybe
