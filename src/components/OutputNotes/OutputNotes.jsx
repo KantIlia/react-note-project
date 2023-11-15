@@ -1,34 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './OutputNotes.css';
 
 
-
 export default function OutputNotes({ noteArray, deleteNote, handleNoteClick }) {
-  const [showModal, setShowModal] = useState(false);
-
-  const toggleShowModal = (fromDeleteButton) => {
-    if (!fromDeleteButton) {
-      setShowModal(!showModal);
-    }
-  };
-
-  const handleButtonClick = (id) => {
+  const handleButtonClick = (id, e) => {
+    e.stopPropagation();
     deleteNote(id);
-    toggleShowModal(false);
   };
+
 
   const handleItemClick = (note) => {
     handleNoteClick(note);
   };
 
+
   return (
     <div className='outpuxBox'>
       {noteArray.slice().reverse().map((item, id) => (
         <div key={id} onClick={() => handleItemClick(item)}>
-          <div>  
-              <button className='DeleteButton' onClick={() => handleButtonClick(id)}>
+          <div>
+            <button className='DeleteButton' onClick={(e) => handleButtonClick(id, e)}>
               <img src='/delete icon.png' alt="Close Icon" />
-              </button>
+            </button>
             <h2>Title: {item.header}</h2>
             <p style={{ whiteSpace: 'pre-line' }}>Text: {item.text}</p>
             <p className='note-date'>Date of creation: {item.dateTime}</p>

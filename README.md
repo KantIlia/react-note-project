@@ -1,11 +1,11 @@
 
-v 2.01
+Hi, welcome to my learning project "Notes" created using React.js. This marks my initial venture into React. Within this application, you can add, modify, and delete notes. Future plans involve creating an archive for version 4.01 and implementing note-saving functionality on the server.
 
- Remake all, have problem with logic start work like it js project but there is react/ it's the 2nd version of pj
+In version 3.01, I've undertaken refactoring efforts. 
 
- at mil make one more patch and remake logic 
+For insights into the project's logic and structure, refer to:
+../designAndCheme/structureOfProject
 
- v 3.01
 
  ## mil1
 
@@ -33,21 +33,40 @@ make output to list for notes
 4. with css make module in front of everething
 
 # mil 5
-1. remake input as a component
+1. remake input block as a component
 2. put new component in module
 3. put proms in to show text when call module
 4. rework save button to save changes add funchion updateNote
 5. add new date in array when create object
 6. show date of change in array note
-7. // when cklick delete button open modal window debug this
+7. when cklick delete button open modal window debug this
 8. dont give user ability to chang textarea
 9. make icon to delete buuton
 10. clean console log 
-11. rebild logic of params make params inline max height 3 lvl, should use useReducer or context but i have no time.....
+11. rebild logic of params make params inline max height 3 lvl, should use useReducer or context but i have no time.....(i start working on pj 3 5 days later because of changing laptop and the old one didint instal react)
  
+
+ ## mil 6
+ 1. make Netlify
+ https://mil5--coruscating-douhua-12620f.netlify.app/
+
+ ## mil 7
+ 1. create local storage saving with useEffect
+ 2. make process rewrite local data to noteArray when page refreshing
+ 3. i dont now why but output work withiout any changes(my output take new item each time when save buuton works - okey i will check how its work) 
+
+
+## mil 8 
+1. find bug with local storage, when it 1 note we delete it storage dont change add clean storage if length 0 to delte button - deleteNote 
+2. clean code delete free space check doublening and not using functhions and const 
+
+
 
 
  ## to do list
  to do list is list of functhions and methods that i use but hfve no clear understanding
  - !text.trim()
- - useReducer dont understand this i think this metod will help me...
+ - useReducer dont understand synaksis of this but i think this metod will help me... => its state manager but in thus pj i shoose gorizontal structure
+ - make 8 - archiv - button to put in array archuv - think about router
+ - mil 7   i dont now why but output work withiout any changes(my output take new item each time when save buuton works but we download array from local storeg and its dispayd without any specific functhions - okey i will check how its work) 
+ - rework design maybe
