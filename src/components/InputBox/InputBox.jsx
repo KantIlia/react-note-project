@@ -7,10 +7,13 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 export default function InputBox() {
+
   const [noteArray, setNoteArray] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedNote, setSelectedNote] = useState();
 
+
+  // cheking block
   useEffect(() => {
     console.log('all array', noteArray);
   }, [noteArray]);
@@ -19,6 +22,8 @@ export default function InputBox() {
     console.log('modal note', selectedNote);
   }, [selectedNote]);
 
+
+  // saving and updatting array block
   const saveButton = (header, text) => {
     const newItem = { id: uuidv4(), header, text, dateTime: new Date().toLocaleString(), changingDate: '' };
     setNoteArray((prevNoteArray) => [...prevNoteArray, newItem]);
@@ -46,9 +51,10 @@ export default function InputBox() {
         return updatedArray;
       });
     }
-    toggleShowModal();
   };
 
+
+  // modal open block //
   const toggleShowModal = () => {
     setShowModal(!showModal);
   };
@@ -58,10 +64,29 @@ export default function InputBox() {
     toggleShowModal();
   };
 
+
+  // localserver working
+  
+  useEffect(() => {
+    if(noteArray.length > 0) {
+    localStorage.setItem('noteArray', JSON.stringify(noteArray));
+    }
+  },[noteArray]);
+
+
+  useEffect(() => {
+    const storedArray = JSON.parse(localStorage.getItem('noteArray'));
+    if (storedArray && !noteArray.length) {
+      setNoteArray(storedArray);
+    }
+  }, []);
+
+
+
   return (
     <div className='mainDiv'>
       <NoteForm saveButton={saveButton} updateNote={updateNote} />
-      <OutputNotes noteArray={noteArray} deleteNote={deleteNote} handleNoteClick={handleNoteClick} />
+      <OutputNotes noteArray={noteArray} deleteNote={deleteNote} handleNoteClick={handleNoteClick} showModal={showModal} toggleShowModal={toggleShowModal} />
       {showModal && (
         <CustomModule note={selectedNote} showModal={showModal} toggleShowModal={toggleShowModal} saveButton={saveButton} updateNote={updateNote} />
         )}

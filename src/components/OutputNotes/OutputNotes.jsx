@@ -3,18 +3,12 @@ import './OutputNotes.css';
 
 
 
-export default function OutputNotes({ noteArray, deleteNote, handleNoteClick }) {
-  const [showModal, setShowModal] = useState(false);
+export default function OutputNotes({ noteArray, deleteNote, handleNoteClick, showModal, toggleShowModal }) {
+  
 
-  const toggleShowModal = (fromDeleteButton) => {
-    if (!fromDeleteButton) {
-      setShowModal(!showModal);
-    }
-  };
-
-  const handleButtonClick = (id) => {
+  const handleButtonClick = (id, e) => {
+    e.stopPropagation();
     deleteNote(id);
-    toggleShowModal(false);
   };
 
   const handleItemClick = (note) => {
@@ -26,7 +20,7 @@ export default function OutputNotes({ noteArray, deleteNote, handleNoteClick }) 
       {noteArray.slice().reverse().map((item, id) => (
         <div key={id} onClick={() => handleItemClick(item)}>
           <div>  
-              <button className='DeleteButton' onClick={() => handleButtonClick(id)}>
+              <button className='DeleteButton' onClick={(e) => handleButtonClick(id, e)}>
               <img src='/delete icon.png' alt="Close Icon" />
               </button>
             <h2>Title: {item.header}</h2>
