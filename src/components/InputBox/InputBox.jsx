@@ -47,13 +47,12 @@ export default function InputBox() {
   const deleteNote = (id) => {
     if (window.confirm('Do you really want to delete this note?')) {
       setNoteArray((prevNoteArray) => {
-        const updatedArray = [...prevNoteArray];
-        updatedArray.splice(id, 1);
-
+        const updatedArray = prevNoteArray.filter((note) => note.id !== id);
+  
         if (updatedArray.length === 0) {
           localStorage.removeItem('noteArray');
         }
-
+  
         return updatedArray;
       });
     }
@@ -78,7 +77,6 @@ export default function InputBox() {
       localStorage.setItem('noteArray', JSON.stringify(noteArray));
     }
   }, [noteArray]);
-
 
   useEffect(() => {
     const storedArray = JSON.parse(localStorage.getItem('noteArray'));
